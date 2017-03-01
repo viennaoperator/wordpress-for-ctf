@@ -54,7 +54,7 @@ EOF
 sed -i "s/#ServerName www.example.com/ServerName $SERVER_NAME/" /etc/apache2/sites-available/000-default.conf
 
 main() {
-  h1 "Begin WordPress Installation Custom Harald"
+  h1 "Begin customized WordPress Installation for CTF"
 
   # Download WordPress
   # ------------------
@@ -163,11 +163,11 @@ check_database() {
           ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
         echo -ne "$REPLACEMENTS\n"
       fi
-    #!else     not reachable anymore - due to .sql in challenge
-      #h3 "No database backup found. Initializing new database"
-      #WP core install |& loglevel
-      #STATUS "${PIPESTATUS[0]}"
-    #fi
+    else
+      h3 "No database backup found. Initializing new database"
+      WP core install |& loglevel
+      STATUS "${PIPESTATUS[0]}"
+    fi
   else
     h3 "Database exists. SKIPPING..."
     STATUS SKIP

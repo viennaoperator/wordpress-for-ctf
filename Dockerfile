@@ -17,3 +17,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring \
     && docker-php-ext-enable opcache gd \
     && service apache2 restart
+
+RUN curl \
+      -o /run.sh https://raw.githubusercontent.com/viennaoperator/wordpress-for-ctf/master/run.sh \
+      && chmod +x /usr/local/bin/wp /run.sh
