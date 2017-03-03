@@ -9,7 +9,8 @@ VERBOSE=${VERBOSE:-false}
 # ------------
 DB_HOST=${DB_HOST:-'db'}
 DB_NAME=${DB_NAME:-'wordpress'}
-DB_PASS=${DB_PASS}
+DB_PASS=${DB_PASS:-'root'}
+DB_PORT=${DB_PASS:-'3306'}
 DB_PREFIX=${DB_PREFIX:-'wp_'}
 SERVER_NAME=${SERVER_NAME:-'localhost'}
 ADMIN_EMAIL=${ADMIN_EMAIL:-"admin@${DB_NAME}.com"}
@@ -34,7 +35,7 @@ core config:
   dbpass: $DB_PASS
   dbname: $DB_NAME
   dbprefix: $DB_PREFIX
-  dbhost: $DB_HOST:3306
+  dbhost: $DB_HOST:$DB_PORT
   extra-php: |
     define('WP_DEBUG', ${WP_DEBUG,,});
     define('WP_DEBUG_LOG', ${WP_DEBUG_LOG,,});
