@@ -72,6 +72,7 @@ main() {
   h2 "Waiting for MySQL to initialize..."
   printf "%b " "${CYAN}${BOLD}  ->${NC} "
   h2 "Using following password: '$DB_PASS'"
+  h2 "Connecting to '$DB_HOST' : '$DB_PORT'"
   while ! mysqladmin ping --host="$DB_HOST" --password="$DB_PASS" --silent; do
     sleep 1
   done
