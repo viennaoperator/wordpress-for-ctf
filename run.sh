@@ -3,7 +3,7 @@
 # Runtime
 # --------
 export TERM=${TERM:-xterm}
-VERBOSE=${VERBOSE:-false}
+VERBOSE=${VERBOSE:-false}SEARCH_REPLACE
 
 # Environment
 # ------------
@@ -19,10 +19,12 @@ WP_DEBUG_DISPLAY=${WP_DEBUG_DISPLAY:-'true'}
 WP_DEBUG_LOG=${WB_DEBUG_LOG:-'false'}
 WP_DEBUG=${WP_DEBUG:-'false'}
 WP_VERSION=${WP_VERSION:-'latest'}
-[ "$SEARCH_REPLACE" ] && \
-  BEFORE_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 1) && \
-  AFTER_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 2) || \
-  SEARCH_REPLACE=false
+#[ "$SEARCH_REPLACE" ] && \
+#  BEFORE_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 1) && \
+#  AFTER_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 2) || \
+#  SEARCH_REPLACE=false
+SITE_URL=${SITE_URL:-'localhost'}
+WEBSERVER_PORT=${WEBSERVER_PORT}
 
 # WP-CLI configuration
 # ---------------------
@@ -42,7 +44,7 @@ core config:
     define('WP_DEBUG_DISPLAY', ${WP_DEBUG_DISPLAY,,});
 
 core install:
-  url: $([ "$AFTER_URL" ] && echo "$AFTER_URL" || echo localhost:8080)
+  url: SITE_URL:WEBSERVER_PORT
   title: $DB_NAME
   admin_user: root
   admin_password: $DB_PASS
