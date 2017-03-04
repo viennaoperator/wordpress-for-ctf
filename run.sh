@@ -3,7 +3,7 @@
 # Runtime
 # --------
 export TERM=${TERM:-xterm}
-VERBOSE=${VERBOSE:-false}SEARCH_REPLACE
+VERBOSE=${VERBOSE:-false}
 
 # Environment
 # ------------
