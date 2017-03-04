@@ -3,7 +3,7 @@
 # Runtime
 # --------
 export TERM=${TERM:-xterm}
-VERBOSE=${VERBOSE:-false}
+VERBOSE=${VERBOSE:-false}SEARCH_REPLACE
 
 # Environment
 # ------------
@@ -19,10 +19,10 @@ WP_DEBUG_DISPLAY=${WP_DEBUG_DISPLAY:-'true'}
 WP_DEBUG_LOG=${WB_DEBUG_LOG:-'false'}
 WP_DEBUG=${WP_DEBUG:-'false'}
 WP_VERSION=${WP_VERSION:-'latest'}
-#[ "$SEARCH_REPLACE" ] && \
-#  BEFORE_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 1) && \
-#  AFTER_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 2) || \
-#  SEARCH_REPLACE=false
+[ "$SEARCH_REPLACE" ] && \
+  BEFORE_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 1) && \
+  AFTER_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 2) || \
+  SEARCH_REPLACE=false
 SITE_URL=${SITE_URL:-'localhost'}
 WEBSERVER_PORT=${WEBSERVER_PORT}
 
@@ -159,13 +159,13 @@ check_database() {
       WP db import "$DATA_PATH" |& loglevel
       STATUS "${PIPESTATUS[0]}"
 
-      # If SEARCH_REPLACE is set => Replace URLs
-      #if [ "$SEARCH_REPLACE" != false ]; then
-      #  h3 "Replacing URLs"
-      #  REPLACEMENTS=$(WP search-replace "$BEFORE_URL" "$AFTER_URL" \
-      #    --skip-columns=guid | grep replacement) || \
-      #    ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
-      #  echo -ne "$REPLACEMENTS\n"
+       If SEARCH_REPLACE is set => Replace URLs
+      if [ "$SEARCH_REPLACE" != false ]; then
+        h3 "Replacing URLs"
+        REPLACEMENTS=$(WP search-replace "$BEFORE_URL" "$AFTER_URL" \
+          --skip-columns=guid | grep replacement) || \
+          ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
+        echo -ne "$REPLACEMENTS\n"
       #fi
     else
       h3 "No database backup found. Initializing new database"
