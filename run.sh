@@ -160,13 +160,13 @@ check_database() {
       STATUS "${PIPESTATUS[0]}"
 
       # If SEARCH_REPLACE is set => Replace URLs
-      if [ "$SEARCH_REPLACE" != false ]; then
-        h3 "Replacing URLs"
-        REPLACEMENTS=$(WP search-replace "$BEFORE_URL" "$AFTER_URL" \
-          --skip-columns=guid | grep replacement) || \
-          ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
-        echo -ne "$REPLACEMENTS\n"
-      fi
+      #if [ "$SEARCH_REPLACE" != false ]; then
+      #  h3 "Replacing URLs"
+      #  REPLACEMENTS=$(WP search-replace "$BEFORE_URL" "$AFTER_URL" \
+      #    --skip-columns=guid | grep replacement) || \
+      #    ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
+      #  echo -ne "$REPLACEMENTS\n"
+      #fi
     else
       h3 "No database backup found. Initializing new database"
       WP core install |& loglevel
