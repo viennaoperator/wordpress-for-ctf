@@ -44,7 +44,7 @@ core config:
     define('WP_DEBUG_DISPLAY', ${WP_DEBUG_DISPLAY,,});
 
 core install:
-  url: SITE_URL:WEBSERVER_PORT
+  url: $SITE_URL:$WEBSERVER_PORT
   title: $DB_NAME
   admin_user: root
   admin_password: $DB_PASS
