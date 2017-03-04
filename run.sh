@@ -166,7 +166,7 @@ check_database() {
           --skip-columns=guid | grep replacement) || \
           ERROR $((LINENO-2)) "Could not execute SEARCH_REPLACE on database"
         echo -ne "$REPLACEMENTS\n"
-      #fi
+      fi
     else
       h3 "No database backup found. Initializing new database"
       WP core install |& loglevel
