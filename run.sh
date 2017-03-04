@@ -159,7 +159,7 @@ check_database() {
       WP db import "$DATA_PATH" |& loglevel
       STATUS "${PIPESTATUS[0]}"
 
-       If SEARCH_REPLACE is set => Replace URLs
+      #If SEARCH_REPLACE is set => Replace URLs
       if [ "$SEARCH_REPLACE" != false ]; then
         h3 "Replacing URLs"
         REPLACEMENTS=$(WP search-replace "$BEFORE_URL" "$AFTER_URL" \
